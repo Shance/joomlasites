@@ -1,0 +1,23 @@
+body{
+    font: "Trebuchet MS" 14px/18px;
+    background: #fff;
+}
+
+.left-edge{
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAABCAYAAADjAO9DAAAAH0lEQVQIHWNkAIKOjg4uhv8MvAyMDAJAriAQi0CxKABHawMPt0EcjgAAAABJRU5ErkJggg==) repeat-y 0 0;
+  width: 988px;
+  margin: 0 auto;
+}
+
+.right-edge{
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAABCAYAAADjAO9DAAAAIElEQVQIHWPq6OgoBeIEIPYBYgsgVu9o7xAH0lwMQAAA9+EMy7LmOaYAAAAASUVORK5CYII=) repeat-y 100% 0;
+  padding-left: 8px;
+  width: 956px;
+  margin: 0 auto;
+}
+
+.wrapper{
+  background: #fff;
+  width: 960px;
+  margin-left: -12px;
+}
