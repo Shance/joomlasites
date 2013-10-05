@@ -1,6 +1,7 @@
 h1{
     font-size: 1.8em;
     font-weight: normal;
+    color: #d5d4d4;
 }
 
 h2{
@@ -33,7 +34,11 @@ a{
 }
 
 p{
-    
+     color: #e2e2e2;
+}
+
+.top-center p{
+    font-size:  12px;
 }
 
 input.invalid{

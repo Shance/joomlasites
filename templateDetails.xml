@@ -7,7 +7,7 @@
         <authorUrl>http://saity74.ru</authorUrl>
         <copyright>Saity74 LLC.</copyright>
         <license>GNU/GPL 2 or Later</license>
-        <version>1.0.0</version>
+        <version>1.1</version>
         <description>TMPL_JOOMLA3_DESC</description>
         <files>
                 <filename>index.php</filename>
@@ -19,19 +19,25 @@
                 <folder>js</folder>
         </files>
         <positions>
-		<position>logo</position>
-		<position>header</position>
-		<position>user1</position>
+		<position>top</position>
+		<position>top-left</position>
+		<position>top-center</position>
+		<position>top-right</position>
+		<position>menu-top</position>
 		<position>slider</position>
-		<position>mainmenu</position>
+		<position>menu-bottom</position>
 		<position>breadcrumbs</position>
 		<position>left</position>
 		<position>right</position>
-		<position>bottom1</position>
-		<position>bottom2</position>
-		<position>bottom3</position>
+		<position>content-header</position>
+		<position>content-footer</position>
+		<position>bottom-1</position>
+		<position>bottom-2</position>
+		<position>bottom-3</position>
+		<position>bottom-4</position>
+		<position>bottom-5</position>
+		<position>bottom-6</position>
 		<position>footer</position>
-		<position>copy</position>
         </positions>
         <languages folder="language">
 		<language tag="ru-RU">ru-RU/ru-RU.tpl_blank_j3.ini</language>
@@ -41,6 +47,22 @@
 	</languages>
 	<config>
 		<fields name="params">
+			<fieldset name="basic">
+				<field name="top_left_class" class="" type="text" label="TPL_BLANK_J3_TOPLEFT_CLASS_LABEL" description="TPL_BLANK_J3_TOPLEFT_CLASS_DESC" />
+				<field name="top_center_class" class="" type="text" label="TPL_BLANK_J3_TOPCENTER_CLASS_LABEL" description="TPL_BLANK_J3_TOPLEFT_CLASS_DESC" />
+				<field name="top_right_class" class="" type="text" label="TPL_BLANK_J3_TOPRIGHT_CLASS_LABEL" description="TPL_BLANK_J3_TOPLEFT_CLASS_DESC" />
+				<field name="borders" type="radio" class="btn-group" default="1" label="TPL_BLANK_J3_SHOW_BORDERS" description="TPL_BLANK_J3_SHOW_BORDERS_DESC">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field name="bottom-count" type="radio" default="1" label="TPL_BLANK_J3_BOTTOM_COUNT" description="TPL_BLANK_J3_BOTTOM_COUNT_DESC">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="6">6</option>
+				</field>
+			</fieldset>
 			<fieldset name="advanced">
 				<field name="socialButtons"
 					type="radio"

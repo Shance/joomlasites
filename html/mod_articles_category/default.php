@@ -10,12 +10,11 @@
 defined('_JEXEC') or die;
 
 ?>
-<ul class="category-module<?php echo $moduleclass_sfx; ?> unstyled">
+<ul class="list-unstyled category-module<?php echo $moduleclass_sfx; ?>">
 <?php if ($grouped) : ?>
 	<?php foreach ($list as $group_name => $group) : ?>
 	<li>
-		<h<?php echo $item_heading; ?>><?php echo $group_name; ?></h<?php echo $item_heading; ?>>
-		<ul>
+		<ul class="list-unstyled">
 			<?php foreach ($group as $item) : ?>
 				<li>
 					<h<?php echo $item_heading + 1; ?>>
@@ -48,13 +47,16 @@ defined('_JEXEC') or die;
 					</span>
 				<?php endif; ?>
 				<?php if ($item->displayDate) : ?>
-					<span class="mod-articles-category-date"><?php echo $item->displayDate; ?></span>
+					<div class="mod-articles-category-date">
+						<span><?php echo $item->displayDate; ?></span>
+					</div>
 				<?php endif; ?>
 				<?php if ($params->get('show_introtext')) :?>
-			<p class="mod-articles-category-introtext">
-                       
-			<?php echo $item->displayIntrotext; ?>
-			</p>
+					<div class="mod-articles-category-content">
+						<p class="mod-articles-category-introtext">
+						<?php echo $item->displayIntrotext; ?>
+						</p>
+					</div>
 		<?php endif; ?>
 
 		<?php if ($params->get('show_readmore')) :?>
@@ -77,6 +79,9 @@ defined('_JEXEC') or die;
 					endif; ?>
 	        </a>
 			</p>
+			<p class="mod-articles-category-allnews">
+				<a href="www.adw.ru">Все новости</a>
+			</p>
 			<?php endif; ?>
 		</li>
 			<?php endforeach; ?>
@@ -86,22 +91,7 @@ defined('_JEXEC') or die;
 <?php else : ?>
 	<?php foreach ($list as $item) : ?>
 	    <li>
-	   	<h<?php echo $item_heading; ?>>
-	   	<?php if ($params->get('link_titles') == 1) : ?>
-		<a class="mod-articles-category-title <?php echo $item->active; ?>" href="<?php echo $item->link; ?>">
-		<?php echo $item->title; ?>
-        <?php if ($item->displayHits) :?>
-			<span class="mod-articles-category-hits">
-            (<?php echo $item->displayHits; ?>)  </span>
-        <?php endif; ?></a>
-        <?php else :?>
-        <?php echo $item->title; ?>
-        	<?php if ($item->displayHits) :?>
-			<span class="mod-articles-category-hits">
-            (<?php echo $item->displayHits; ?>)  </span>
-        <?php endif; ?></a>
-            <?php endif; ?>
-        </h<?php echo $item_heading; ?>>
+	   	
 
        	<?php if ($params->get('show_author')) :?>
        		<span class="mod-articles-category-writtenby">
@@ -114,40 +104,50 @@ defined('_JEXEC') or die;
 			</span>
 		<?php endif; ?>
         <?php if ($item->displayDate) : ?>
-			<span class="mod-articles-category-date"><?php echo $item->displayDate; ?></span>
+			<div class="mod-articles-category-date">
+				<?php
+					$cdate = split(" ",$item->displayDate);
+					echo '<span>'.$cdate[0].'</span>';
+					echo '<span>'.$cdate[1].'</span>';
+				?>
+			</div>
 		<?php endif; ?>
 		<?php if ($params->get('show_introtext')) :?>
-			
-                        <?php
-                            $images = new JRegistry();
-                            $images->loadString($item->images);
-                        ?>
-			<?php if ($images->get('image_intro')) :?>
-			<p>
-				<img class="mod-articles-category-introimage" src="<?php echo $images->get('image_intro') ?>" alt="<?php echo $images->get('image_intro_alt') ?>" style="float: <?php echo $images->get('float_intro') ?>" />
-			</p>
-			<?php endif ?>
-			<p class="mod-articles-category-introtext">
-                            <?php echo $item->displayIntrotext; ?>
-			</p>
-		<?php endif; ?>
+		<div class="mod-articles-category-content">	
+	                        <?php
+	                            $images = new JRegistry();
+	                            $images->loadString($item->images);
+	                        ?>
+				<?php if ($images->get('image_intro')) :?>
+				<p>
+					<img class="mod-articles-category-introimage" src="<?php echo $images->get('image_intro') ?>" alt="<?php echo $images->get('image_intro_alt') ?>" style="float: <?php echo $images->get('float_intro') ?>" />
+				</p>
+				<?php endif ?>
+				<p class="mod-articles-category-introtext">
+	                            <?php echo $item->displayIntrotext; ?>
+				</p>
+			<?php endif; ?>
 
-		<?php if ($params->get('show_readmore')) :?>
-			<p class="mod-articles-category-readmore">
-				<a class="readmore btn <?php echo $item->active; ?>" href="<?php echo $item->link; ?>">
-		        <?php if ($item->params->get('access-view') == false) :
-						echo JText::_('MOD_ARTICLES_CATEGORY_REGISTER_TO_READ_MORE');
-					elseif ($readmore = $item->alternative_readmore) :
-						echo $readmore;
-						echo JHtml::_('string.truncate', $item->title, $params->get('readmore_limit'));
-					elseif ($params->get('show_readmore_title', 0) == 0) :
-						echo JText::sprintf('MOD_ARTICLES_CATEGORY_READ_MORE_TITLE');
-					else :
-						echo JText::_('MOD_ARTICLES_CATEGORY_READ_MORE');
-						echo JHtml::_('string.truncate', $item->title, $params->get('readmore_limit'));
-					endif; ?>
-	        </a>
+			<?php if ($params->get('show_readmore')) :?>
+				<p class="mod-articles-category-readmore">
+					<a class="readmore <?php echo $item->active; ?>" href="<?php echo $item->link; ?>">
+			        <?php if ($item->params->get('access-view') == false) :
+							echo JText::_('MOD_ARTICLES_CATEGORY_REGISTER_TO_READ_MORE');
+						elseif ($readmore = $item->alternative_readmore) :
+							echo $readmore;
+							echo JHtml::_('string.truncate', $item->title, $params->get('readmore_limit'));
+						elseif ($params->get('show_readmore_title', 0) == 0) :
+							echo JText::sprintf('MOD_ARTICLES_CATEGORY_READ_MORE_TITLE');
+						else :
+							echo JText::_('MOD_ARTICLES_CATEGORY_READ_MORE');
+							echo JHtml::_('string.truncate', $item->title, $params->get('readmore_limit'));
+						endif; ?>
+		        </a>
+				</p>
+			<p class="mod-articles-category-allnews">
+				<a href="8-news" class="readmore">Все новости</a>
 			</p>
+		</div>			
 		<?php endif; ?>
 	</li>
 	<?php endforeach; ?>

@@ -56,7 +56,7 @@ class jCSS
 }
 
 
-	$css = new jCSS(array('bootstrap.min.css', 'modules.css', 'template.css', 'typo.css', 'social.css'));
+	$css = new jCSS(array('bootstrap.min.css', 'template.css', 'typo.css', 'social.css'));
 	$css->render();
 	
 ?>
